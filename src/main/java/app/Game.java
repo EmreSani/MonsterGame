@@ -11,7 +11,6 @@ public class Game {
     private Monster monster;
     private Player player;
     public void startGame() {
-        Stick stick = new Stick();
         buildPlayer();
         buildMonster();
         do {
@@ -22,17 +21,17 @@ public class Game {
 
     private void startAttacks() {
         while (monster.isAlive() && player.isAlive()) {
-            System.out.println("model.Player " + player.getName() + " attack");
+            System.out.println("Player " + player.getName() + " attack");
             monster.decreaseHealth(getAttackPoint());
             if (!monster.isAlive()) {
                 break;
             }
-            System.out.println("model.Monster " + monster.getType() + " attack");
+            System.out.println("Monster " + monster.getType() + " attack");
             player.decreaseHealth(getAttackPoint());
             printHealthStatus();
 
         }
-        System.out.println((player.getHealth() > 0 ? ("model.Player " + player.getName()) : ("model.Monster " + monster.getType()))
+        System.out.println((player.getHealth() > 0 ? ("Player " + player.getName()) : ("Monster " + monster.getType()))
                 + " wins!");
     }
 
@@ -42,12 +41,12 @@ public class Game {
     }
 
     private void printHealthStatus() {
-        System.out.println("model.Player " + player.getName() + " health " + player.getHealth());
-        System.out.println("model.Monster " + monster.getType() + " health " + monster.getHealth());
+        System.out.println("Player " + player.getName() + " health " + player.getHealth());
+        System.out.println("Monster " + monster.getType() + " health " + monster.getHealth());
     }
 
     private void buildMonster() {
-        monster = new Monster(FULL_HEALTH, "Big Head");
+        monster = new Monster("Big Head");
     }
 
     //   private String askType(){
@@ -58,7 +57,7 @@ public class Game {
     private void buildPlayer() {
         int age = askAge();
         String name = askName();
-        player = new Player(FULL_HEALTH, name, age);
+        player = new Player(name, age);
 
     }
 

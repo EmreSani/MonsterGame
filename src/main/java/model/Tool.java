@@ -4,6 +4,12 @@ public class Tool {
     private int power;
     private int price;
 
+    public Tool(int power, int price){
+       this.power =power;
+       this.price =price;
+
+    }
+
     public int getPower() {
         return power;
     }
@@ -19,4 +25,9 @@ public class Tool {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public void refill(){
+
+    }
+
 }

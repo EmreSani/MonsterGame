@@ -1,12 +1,16 @@
 package model;
-import app.Game;
 
-public class Player {
-    private int health;
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class Player extends GameElement{
     private String name;
+    private int age;
+    ArrayList<Tool> tools;
 
-    public Player(int health, String name, int age) {
-        setHealth(health);
+
+
+    public Player(String name, int age) {
         this.name = name;
         setAge(age);
     }
@@ -29,30 +33,34 @@ public class Player {
         }
         this.age = age;
     }
-
-    private int age;
-
-
-    private void setHealth(int health) {
-        if (health > Game.FULL_HEALTH) {
-            throw new IllegalArgumentException("Health shouldn't be higher than " + Game.FULL_HEALTH);
+    public void addTool(Tool tool){
+        if (this.tools == null){
+            this.tools = new ArrayList<>();
         }
-        this.health = health;
+        this.tools.add(tool);
     }
 
-    public int getHealth() {
-        return health;
+    public void printTools(){
+        for(Tool tool : tools){
+            System.out.println(tool);
+        }
+    }
+    public void refillTools(){
+        for(Tool tool : tools){
+            tool.refill();
+        }
     }
 
-    public void resetHealth() {
-        health = Game.FULL_HEALTH;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return age == player.age && Objects.equals(name, player.name);
     }
 
-    public void decreaseHealth(int points) {
-        health -= points;
-    }
-
-    public boolean isAlive() {
-        return health > 0;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 }
