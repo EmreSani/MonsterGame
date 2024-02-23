@@ -1,6 +1,10 @@
+package model;
+import app.Game;
+
 public class Player {
     private int health;
     private String name;
+
     public Player(int health, String name, int age) {
         setHealth(health);
         this.name = name;
@@ -20,8 +24,8 @@ public class Player {
     }
 
     private void setAge(int age) {
-        if (age < 10){
-           throw new IllegalArgumentException("Player age should be greater than 10");
+        if (age < 10) {
+            throw new IllegalArgumentException("model.Player age should be greater than 10");
         }
         this.age = age;
     }
@@ -30,23 +34,25 @@ public class Player {
 
 
     private void setHealth(int health) {
-        if (health > 100){
-            throw new IllegalArgumentException("Health shouldn't be higher than 100");
+        if (health > Game.FULL_HEALTH) {
+            throw new IllegalArgumentException("Health shouldn't be higher than " + Game.FULL_HEALTH);
         }
         this.health = health;
     }
 
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
 
-    public void resetHealth(){
-        health = 100;
+    public void resetHealth() {
+        health = Game.FULL_HEALTH;
     }
-    public void decreaseHealth(int points){
+
+    public void decreaseHealth(int points) {
         health -= points;
     }
-    public boolean isAlive(){
+
+    public boolean isAlive() {
         return health > 0;
     }
 }
