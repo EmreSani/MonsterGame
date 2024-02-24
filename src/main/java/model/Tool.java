@@ -1,6 +1,6 @@
 package model;
 
-public class Tool {
+public abstract class Tool {
     private int power;
     private int price;
 
@@ -26,8 +26,8 @@ public class Tool {
         this.price = price;
     }
 
-    public void refill(){
+    public abstract void refill();
 
-    }
+
 
 }

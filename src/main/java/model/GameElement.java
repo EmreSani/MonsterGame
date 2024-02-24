@@ -1,8 +1,9 @@
 package model;
 
+import app.Attack;
 import app.Game;
 
-public class GameElement {
+public abstract class GameElement {
     private int health;
 
 
@@ -33,4 +34,7 @@ public class GameElement {
     public boolean isAlive() {
         return health > 0;
     }
+
+    public abstract int getAttackPoint(Attack attack);
 }
+

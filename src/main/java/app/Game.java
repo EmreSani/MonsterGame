@@ -10,6 +10,7 @@ public class Game {
     public static final int FULL_HEALTH = 100;
     private Monster monster;
     private Player player;
+
     public void startGame() {
         buildPlayer();
         buildMonster();
@@ -20,15 +21,24 @@ public class Game {
     }
 
     private void startAttacks() {
+        int round = 1;
         while (monster.isAlive() && player.isAlive()) {
+            System.out.println("ROUND: "+round);
             System.out.println("Player " + player.getName() + " attack");
-            monster.decreaseHealth(getAttackPoint());
+            monster.decreaseHealth(player.getAttackPoint(new NormalAttack()));
             if (!monster.isAlive()) {
                 break;
             }
             System.out.println("Monster " + monster.getType() + " attack");
-            player.decreaseHealth(getAttackPoint());
+            Attack attack = new NormalAttack();
+            if (round == 3){
+                attack = new SuperAttack();
+            } else if (round == 18){
+                attack = new ExtremeAttack();
+            }
+            player.decreaseHealth(monster.getAttackPoint(attack));
             printHealthStatus();
+            round++;
 
         }
         System.out.println((player.getHealth() > 0 ? ("Player " + player.getName()) : ("Monster " + monster.getType()))
@@ -79,9 +89,7 @@ public class Game {
         String answer = scanner.nextLine();
         return answer.trim().equalsIgnoreCase("evet");
     }
-
-    private static int getAttackPoint() {
-        return (int) (1 + (Math.random() * 10));
-    }
 }
+
+
 

@@ -1,5 +1,8 @@
 package model;
 
+import app.Attack;
+import app.StaticMethods;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -49,6 +52,11 @@ public class Player extends GameElement{
         for(Tool tool : tools){
             tool.refill();
         }
+    }
+
+    @Override
+    public int getAttackPoint(Attack attack) {
+        return StaticMethods.getRandomNumber(1, 10);
     }
 
     @Override

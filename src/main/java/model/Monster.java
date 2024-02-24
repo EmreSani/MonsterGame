@@ -1,4 +1,8 @@
 package model;
+
+import app.Attack;
+import app.StaticMethods;
+
 public class Monster extends GameElement{
 
     private String type;
@@ -8,5 +12,11 @@ public class Monster extends GameElement{
     }
     public String getType() {
         return type;
+    }
+
+    @Override
+    public int getAttackPoint(Attack attack) {
+
+        return  attack.calculateAttackPoints(StaticMethods.getRandomNumber(1, 10));
     }
 }
